@@ -1,9 +1,5 @@
-type Image = {
-  urls: {
-    small: string;
-  };
-  alt_description: string;
-};
+import React from "react";
+import { Image } from "../../types";
 
 type ImageCardProps = {
   image: Image;

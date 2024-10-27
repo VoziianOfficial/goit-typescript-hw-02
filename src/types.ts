@@ -1,3 +1,4 @@
+// types.ts
 export type Image = {
   id: string;
   urls: {
@@ -14,5 +15,3 @@ export type Image = {
 export type FetchArticlesResponse = {
   results: Image[];
 };
-
-export type Error = string | null;

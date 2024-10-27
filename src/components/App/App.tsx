@@ -8,13 +8,7 @@ import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn";
 import ImageModal from "../ImageModal/ImageModal";
 import fetchArticles from "../../services/api";
 import toast, { Toaster } from "react-hot-toast";
-
-// Тип изображения
-type Image = {
-  id: string;
-  url: string;
-  title: string;
-};
+import { Image } from "../../types"; // Импорт типа Image
 
 // Тип состояния ошибки
 type Error = string | null;
@@ -38,16 +32,17 @@ const App: React.FC = () => {
     setError(null);
 
     fetchArticles(query, currentPage)
-      .then((newImages: Image[]) => {
+      .then((newImages) => {
         if (newImages.length === 0) {
           setError("No images found. Try another search term.");
         } else {
           setImages((prevImages) => [...prevImages, ...newImages]);
         }
-        setIsLoading(false);
       })
       .catch(() => {
         setError("Something went wrong. Please try again.");
+      })
+      .finally(() => {
         setIsLoading(false);
       });
   }, [query, currentPage]);
